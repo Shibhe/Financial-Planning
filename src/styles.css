@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,body{
+	padding:0;
+	margin:0;
+	background:#fff;
+font-family: 'Encode Sans Condensed', sans-serif;
+}
+
+body a{
+    transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+	text-decoration:none;
+}
+body a:hover {
+	text-decoration: none;
+}
+
+body a:focus, a:hover {
+	text-decoration: none;
+}
+
+input.form-control, select.form-control {
+    height: 48px;
+    background-color: #fdfdfb;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: 3px solid #e9e6e0;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+
+input[type="radio"] + .radio-inline:before{
+	font-family: "FontAwesome";
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing:antialiased;
+	width: 1em;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+input[type="radio"]:checked + .radio-inline:before{
+	color: #8e44ad;
+	animation: effect 250ms ease-in;
+}
+
+
+button {
+    height: 48px;
+}
