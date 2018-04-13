@@ -1,5 +1,5 @@
-<div class="banner" style="background: url(./assets/images/Financial.jpg)no-repeat center">
-  <div class="top-bar" style="background-color: #5DADE2; height: 27px">
+<div class="banner" style="background: url(./assets/images/corpo.jpg)no-repeat center; background-color: #85C1E9">
+  <div class="top-bar" style="background-color: #f4511e; height: 27px">
         <div class="container">
            <div class="row">
               <div class="col-sm-4 hidden-xs">
@@ -34,7 +34,7 @@
            </div>
         </div>
     </div>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse" style="background-color: #85C1E9;border-radius: 0px; border: 0px">
         <div class="container">
          <div class="row">
             <div class="navbar-header">
@@ -52,8 +52,8 @@
                   <li class="txt"><a href="#">Contact</a></li>
                   <li class="txt"><a href="#">Service</a></li>
                  <!-- <li><a routerLink="/users/sign_in" target="_blank">SignIn</a></li>-->
-                  <li class="txt"><a routerLink="/user/signin" target="_blank">Sign In</a></li>
-                  <li class="txt"><a routerLink="/usersignup">Sign Up</a></li>
+                  <li class="txt"><a data-toggle="modal" data-target="#myModal">Sign In</a></li>
+                  <li class="txt"><a data-toggle="modal" data-target="#signUp">Sign Up</a></li>
                 </ul>
               </div>
          </div>
@@ -62,7 +62,7 @@
 
       <div class="container">
          <div class="w3layouts-text" >
-            <h2 style="color: #273746">Welcome to <strong>FPT</strong> <span>South Africa</span></h2>
+            <h2 style="color: #CB4335">Welcome to <strong>FPT</strong> <span>South Africa</span></h2>
                <div class="border"></div>
                   
            <div class="w3-button">
@@ -70,4 +70,76 @@
            </div>
           </div>
        </div>
+
+        <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header modal-header-primary" style="background-color: #2874A6">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="panel-title" style="color: #B2BABB">Please sign in</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form accept-charset="UTF-8" role="form">
+                           <fieldset>
+                                    <div class="form-group">
+                                      <input class="form-control" placeholder="E-mail" name="email" type="text">
+                                    </div>
+                                  <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                  </div>
+                                  <div class="checkbox">
+                                      <label>
+                                        <input name="remember" type="checkbox" value="Remember Me"> Remember Me
+                                      </label>
+                                    </div>
+                                  <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Login</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+
+
+              <div class="modal fade" id="signUp" role="dialog">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header modal-header-primary" style="background-color: #2874A6">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="panel-title" style="color: #B2BABB">Please sign in</h4>
+                      </div>
+                      <div class="modal-body">
+                          <form accept-charset="UTF-8" role="form">
+                             <fieldset>
+                                      <div class="form-group">
+                                        <input class="form-control" placeholder="E-mail" name="email" type="text">
+                                      </div>
+                                    <div class="form-group">
+                                      <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                          <input name="remember" type="checkbox" value="Remember Me"> Remember Me
+                                        </label>
+                                      </div>
+                                    <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+                              </fieldset>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-primary">Login</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
   </div>
