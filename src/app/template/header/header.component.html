@@ -94,7 +94,6 @@
                                         <input name="remember" type="checkbox" value="Remember Me"> Remember Me
                                       </label>
                                     </div>
-                                  <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                             </fieldset>
                         </form>
                     </div>
@@ -114,28 +113,60 @@
                     <div class="modal-content">
                       <div class="modal-header modal-header-primary" style="background-color: #2874A6">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="panel-title" style="color: #B2BABB">Please sign in</h4>
+                        <h4 class="panel-title" style="color: #B2BABB">Register</h4>
                       </div>
                       <div class="modal-body">
                           <form accept-charset="UTF-8" role="form">
                              <fieldset>
-                                      <div class="form-group">
-                                        <input class="form-control" placeholder="E-mail" name="email" type="text">
+                                     <div class="col-lg-12">
+                                        <div class="row">
+                                             <div class="col-lg-6">
+                                                <label for="firstName">First Name</label>
+                                                <input type="text" [(ngModel)]="user.user_Name" class="form-control" name="firstName" placeholder="Enter first name">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="firstName">Last Name</label>
+                                                <input type="text" [(ngModel)]="user.user_Surname" class="form-control" name="lastName" placeholder="Enter last Name">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                           <div class="col-lg-6">
+                                              <label for="idNumber">ID No.</label>
+                                              <input type="text" [(ngModel)]="user.user_IdNumber" class="form-control" name="idNumber" (keydown)="validateID($event)" placeholder="Enter ID Number">
+                                           </div>
+                                           <div class="col-lg-6">
+                                              <label for="gender">Gender</label>
+                                              <select class="form-control" [(ngModel)]="user.user_Gender" name="gender">
+                                                <option value="" checked disabled>
+                                                    Select Gender
+                                                </option>
+                                               <option value="Male">
+                                                 Male
+                                               </option>
+                                               <option value="Female">
+                                                 Female
+                                               </option>
+                                              </select>
+                                         </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="col-lg-6">
+                                              <label for="email">Email</label>
+                                              <input type="email" class="form-control" [(ngModel)]="user.user_Email" name="email" placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                                     title="that must be in the following order: characters@characters.domain (characters followed by an @ sign, followed by more characters, and then a '.'">
+                                         </div>
+                                         <div class="col-lg-6">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" [(ngModel)]="user.user_Password" name="password" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                   title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                                         </div>
+                                     </div>
                                       </div>
-                                    <div class="form-group">
-                                      <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                          <input name="remember" type="checkbox" value="Remember Me"> Remember Me
-                                        </label>
-                                      </div>
-                                    <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                               </fieldset>
                           </form>
                       </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-primary">Login</button>
+                          <button type="button" class="btn btn-primary" (click)="submitUser()">Submit</button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       </div>
                     </div>

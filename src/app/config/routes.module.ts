@@ -1,15 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { MainComponent } from "../template/main/main.component";
-import { LoginComponent } from "../views/login/login.component";
-import { RegisterComponent } from "../views/register/register.component";
 import { NotFoundComponent } from "../helpers/errors/not-found.error";
+import { MainDashboardComponent } from "../views/template/main-dashboard/main-dashboard.component";
 
 const appRouter: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/home'},
     { path: 'home', component: MainComponent },
-    { path: 'user/signin', component: LoginComponent },
-    { path: 'user/signup', component: RegisterComponent },
+    { path: 'user/dashboard:id', component: MainDashboardComponent },
     { path: '**', component: NotFoundComponent}
     ]
   
