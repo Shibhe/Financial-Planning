@@ -4,6 +4,7 @@ import { AccountService } from '../../services/account.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
+import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-header',
@@ -37,8 +38,9 @@ export class HeaderComponent implements OnInit {
   submitUser(){
       this.userAccountService.addUser(this.user)
           .subscribe((data) => {
-           // $("signUp").modal('toggle');
-             alert("Success");
+            alert("Alert");
+            $("#signUp").modal('hide');
+            this.user = new User();
           },
           (err: HttpErrorResponse | Error) => {
            

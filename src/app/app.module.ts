@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RoutingModule } from './config/routes.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 // Components
 import { AppComponent } from './app.component';
@@ -46,7 +48,8 @@ import { AccountService } from './services/account.service';
     BrowserModule,
     RoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [ AccountService ],
   bootstrap: [AppComponent]

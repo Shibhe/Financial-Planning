@@ -1,3 +1,57 @@
-<p>
-  main-dashboard works!
-</p>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><p style="color: black; margin-left:50px; margin-top: 10px"><strong> Logged in as {{ email }}  </strong></p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><button class="btn btn-default" style="color: black; margin-right:100px; margin-top: 5px" (click)="logout()"> <strong> Logout</strong></button></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+    <ngb-tabset [justify]="currentJustify">
+        <ngb-tab  title="Flight">
+          <ng-template ngbTabContent>
+          <p>my bookings</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab  title="Hotel">
+          <ng-template ngbTabContent>
+            <p>my bookinga</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab  title="Car Rental">
+          <ng-template ngbTabContent>
+              <p>my bookings</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab  title="My Booking">
+            <ng-template ngbTabContent>
+                <p>my bookings</p>
+            </ng-template>
+          </ngb-tab>
+         <ngb-tab  title="Approvals">
+            <ng-template ngbTabContent>
+                <p>payment</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab  title="My Travellers">
+            <ng-template ngbTabContent>
+               <p>My travellers</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab  title="Search Travellers">
+              <ng-template ngbTabContent>
+                  <p>search Travellers</p>
+              </ng-template>
+            </ngb-tab>
+      </ngb-tabset> 
+</div>
+</div>
+</div>

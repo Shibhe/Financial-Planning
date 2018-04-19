@@ -7,7 +7,7 @@ import { MainDashboardComponent } from "../views/template/main-dashboard/main-da
 const appRouter: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/home'},
     { path: 'home', component: MainComponent },
-    { path: 'user/dashboard:id', component: MainDashboardComponent },
+    { path: 'user/dashboard', component: MainDashboardComponent },
     { path: '**', component: NotFoundComponent}
     ]
   
