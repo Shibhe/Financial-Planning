@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <h1><b>LINE ITEMS</b></h1>
   <div class="row" style="margin-top: 30px">
     <div class="col-lg-4">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addItem"><i class="fa fa-plus"></i> Add Item</button>
@@ -6,48 +7,58 @@
   </div>
   <div class="row" style="margin-top: 20px">
     <div class="col-lg-12">
-      <table class="table table-hover">
+      <table class="table table-hover" *ngIf="itemList.length > 0; else noItems">
         <thead>
           <tr>
             <th>#</th>
             <th>Type/Category</th>
             <th>Item Name</th>
             <th>Descritpion</th>
-            <th>Expenses</th>
-            <th>Revenue</th>
+            <th>Amount</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1.</td>
-            <td>Revenue/Income</td>
-            <td>Donations</td>
-            <td>blah blah!!</td>
-            <td>R 0.00</td>
-            <td>R 5000.00</td>
+          <tr *ngFor="let items of itemList; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ items.type}}</td>
+            <td>{{ items.itemName }}</td>
+            <td>{{ items.itemDesc }}</td>
+            <td>R {{ items.itemAmt | number: '1.2' }}</td>
+            <td>
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a class="btn btn-danger" title="Delete Item" (click)="removeItem(items.id)" data-toggle="modal" data-target="#deleteItem"><i class="fa fa-trash"></i></a></li>
+                  <li class="list-inline-item"><a class="btn btn-danger" title="Edit Item"><i class="fa fa-edit"></i></a></li>
+              </ul>
+            </td>
           </tr>
-          <tr>
-              <td>2.</td>
-              <td>Other Expenses</td>
-              <td>Seminar</td>
-              <td>blah blah!!</td>
-              <td>R 200.00</td>
-              <td>R 0.00</td>
-            </tr>
-            <tr>
-                <td>3.</td>
-                <td>Revenue/Income</td>
-                <td>Membership</td>
-                <td>blah blah!!</td>
-                <td>R 0.00</td>
-                <td>R 250.00</td>
-              </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
+<ng-template #noItems>
+  <h3>No Item</h3>
+</ng-template>
+
+<div class="modal fade" id="deleteItem" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-primary" style="background-color: #2874A6">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="panel-title" style="color: white">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <h3><b>Are you sure you want to delete the item?</b></h3>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="confirm()" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="addItem" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -59,21 +70,21 @@
         <div class="modal-body">
             <form accept-charset="UTF-8" role="form">
                <fieldset>
-                       <div class="col-lg-12">
+                 <div class="col-lg-12">
                           <div class="row">
                                <div class="col-lg-6">
                                   <label for="firstName">Item Name</label>
-                                  <input type="text"  class="form-control" name="itemName" placeholder="Enter item name">
+                                  <input type="text" [(ngModel)]="lineItem.itemName"  class="form-control" name="itemName" placeholder="Enter item name">
                               </div>
                               <div class="col-lg-6">
                                   <label for="amount">Amount</label>
-                                  <input type="text"  class="form-control" name="itemAmt" placeholder="Enter amount">
+                                  <input type="number" [(ngModel)]="lineItem.itemAmt"  class="form-control" name="itemAmt" placeholder="Enter amount">
                               </div>
                           </div>
                           <div class="row">
                              <div class="col-lg-6">
                                 <label for="gender">Spend Type</label>
-                                <select class="form-control"  name="gender">
+                                <select class="form-control" [(ngModel)]="lineItem.type"  name="type">
                                   <option value="" checked disabled>
                                       Select Spend Type
                                   </option>
@@ -93,7 +104,7 @@
                            </div>
                            <div class="col-lg-6">
                               <label for="email">Description</label>
-                              <textarea placeholder="Enter item description" rows="4" class="form-control"></textarea>
+                              <textarea placeholder="Enter item description" [(ngModel)]="lineItem.itemDesc" name="itemDesc" rows="4" class="form-control"></textarea>
                          </div>
                          </div>
                         </div>
@@ -101,7 +112,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save Item</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveItem()">Save Item</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

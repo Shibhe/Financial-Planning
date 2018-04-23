@@ -17,7 +17,7 @@ export class MainDashboardComponent implements OnInit {
 
   ngOnInit() {
     if (!sessionStorage.getItem("currentUser")){
-      this.route.navigate(['unathorize']);
+      // this.route.navigate(['unathorize']);
     }
   }
 
