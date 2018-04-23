@@ -12,13 +12,13 @@ export class AccountService {
   isLoggedIn: boolean = true;
 
   constructor(private Http: HttpClient) { }
-  addUser(user: User): Observable<User>{
+  addUser(user){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
 
-    return this.Http.post<User>(`${this.BASE_URL}/addUser.php`, user, {headers: this.myHeader})
-                                                                      .map((respose) => respose);
+    return this.Http.post(`${this.BASE_URL}/addUser.php`, user, {headers: this.myHeader})
+                     .map((respose) => respose);
   }
 
   userLogin(email, password): Observable<any>{
