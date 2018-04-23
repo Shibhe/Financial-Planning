@@ -16,41 +16,36 @@
 <div class="row">
 <div class="col-lg-12">
     <ngb-tabset [justify]="currentJustify">
-        <ngb-tab  title="Flight">
+        <ngb-tab  title="LINE ITEMS">
+            <ng-template ngbTabContent>
+                <app-line-item></app-line-item>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab  title="ANALYSIS OVERVIEW">
           <ng-template ngbTabContent>
-          <p>my bookings</p>
+              <app-charts></app-charts>
           </ng-template>
         </ngb-tab>
-        <ngb-tab  title="Hotel">
-          <ng-template ngbTabContent>
-            <p>my bookinga</p>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab  title="Car Rental">
-          <ng-template ngbTabContent>
-              <p>my bookings</p>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab  title="My Booking">
+         <ngb-tab  title="CLASSIFY A TRANSACTION">
             <ng-template ngbTabContent>
-                <p>my bookings</p>
+                <app-trans-bank-statement></app-trans-bank-statement>
             </ng-template>
           </ngb-tab>
-         <ngb-tab  title="Approvals">
-            <ng-template ngbTabContent>
-                <p>payment</p>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab  title="My Travellers">
-            <ng-template ngbTabContent>
-               <p>My travellers</p>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab  title="Search Travellers">
+          <ngb-tab  title="BUDGET REPORT">
               <ng-template ngbTabContent>
-                  <p>search Travellers</p>
+                 <app-budget-report></app-budget-report>
               </ng-template>
             </ngb-tab>
+          <ngb-tab  title="SPEND REPORT">
+            <ng-template ngbTabContent>
+               <app-spend-report></app-spend-report>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab  title="VARIANT REPORT">
+              <ng-template ngbTabContent>
+              <app-variance-report></app-variance-report>
+              </ng-template>
+          </ngb-tab>
       </ngb-tabset> 
 </div>
 </div>

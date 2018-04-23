@@ -25,6 +25,9 @@ import { OverviewComponent } from './template/pages/overview/overview.component'
 
 // Services
 import { AccountService } from './services/account.service';
+import { NotFoundComponent } from './helpers/errors/not-found.error';
+import { ChartsComponent } from './template/pages/charts/charts.component';
+import { LineItemComponent } from './template/pages/line-item/line-item.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { AccountService } from './services/account.service';
     TransBankStatementComponent,
     SpendReportComponent,
     VarianceReportComponent,
-    OverviewComponent
+    OverviewComponent,
+    NotFoundComponent,
+    ChartsComponent,
+    LineItemComponent
   ],
   imports: [
     BrowserModule,

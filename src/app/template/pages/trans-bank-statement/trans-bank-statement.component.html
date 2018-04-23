@@ -1,3 +1,123 @@
-<p>
-  trans-bank-statement works!
-</p>
+<div class="container-fluid">
+    <div class="row" style="margin-top: 30px">
+      <div class="col-lg-4">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bankStatement"><i class="fa fa-file"></i> IMPORT A BANK STATEMENT</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6">
+                <label for="reportPeriod" class="col-lg-12">Report Period</label>
+                <select class="form-control">
+                  <option>Select Report Period</option>
+                  <option>30 Days</option>
+                  <option>60 Days</option>
+                  <option>120 Days</option>
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label for="reportPeriod" class="col-lg-12">Spend Type</label>
+                <select class="form-control"  name="gender">
+                  <option value="" checked disabled>
+                      Select Spend Type
+                  </option>
+                 <option value="Income">
+                   Income
+                 </option>
+                 <option value="Investments">
+                   Investments
+                 </option>
+                 <option value="Running Cost">
+                    Running Cost
+                  </option>
+                  <option value="Other">
+                      Other Loan Products
+                    </option>
+                </select>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                      <div class="panel-body">Line entry on bank statement</div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+      <div class="col-lg-6">
+          <label for="comment" class="col-lg-12">Comment: </label>
+          <textarea class="form-control" placeholder="comment" rows="5"></textarea>
+      </div>
+      <div class="col-lg-6">
+          <label for="reportPeriod" class="col-lg-12">Budget Line Item</label>
+          <select class="form-control"  name="gender">
+            <option value="" checked disabled>
+                Select Budget Item
+            </option>
+           <option value="Income">
+             Income
+           </option>
+           <option value="Investments">
+             Investments
+           </option>
+           <option value="Running Cost">
+              Running Cost
+            </option>
+            <option value="Other">
+                Other Loan Products
+              </option>
+          </select>
+          <div class="row" style="margin-left: 8px">
+              <button type="button" class="btn btn-danger">Classify</button>
+              <button type="button" class="btn btn-default">Cancel</button>
+          </div>
+        </div>
+    </div>
+  
+  
+  <div class="modal fade" id="bankStatement" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header modal-header-primary" style="background-color: #2874A6">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="panel-title" style="color: #B2BABB">Importing a bank statement</h4>
+          </div>
+          <div class="modal-body">
+              <form accept-charset="UTF-8" role="form">
+                 <fieldset>
+                         <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel-group">
+                                    <div class="panel panel-default">
+                                      <div class="panel-body">List of downloaded bank statements</div>
+                                    </div>
+                                  </div>
+                            </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-lg-12">
+                                <select class="form-control">
+                                  <option>Select a bank</option>
+                                  <option>Absa bank</option>
+                                  <option>Standard bank</option>
+                                  <option>Capitec bank</option>
+                                </select>
+                            </div>
+                         </div>
+                  </fieldset>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Import</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>

@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
     this.userAccountService.userLogin(email, password)
                             .subscribe((data) => {
                               this.setSessionStorage(data);
-                              this.route.navigate(['user/dashboard', data.user_ID]);
+                              this.route.navigate(['user/signin/dashboard', data.user_ID]);
                             },
                             (err: HttpErrorResponse | Error) => {
                              
