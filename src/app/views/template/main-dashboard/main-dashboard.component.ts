@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-dashboard.component.css']
 })
 export class MainDashboardComponent implements OnInit {
+  
   email="Joseph";
 
 
@@ -15,6 +16,9 @@ export class MainDashboardComponent implements OnInit {
               private route: Router) { }
 
   ngOnInit() {
+    if (!sessionStorage.getItem("currentUser")){
+      this.route.navigate(['unathorize']);
+    }
   }
 
   logout(){

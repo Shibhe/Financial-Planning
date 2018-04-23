@@ -28,6 +28,8 @@ import { AccountService } from './services/account.service';
 import { NotFoundComponent } from './helpers/errors/not-found.error';
 import { ChartsComponent } from './template/pages/charts/charts.component';
 import { LineItemComponent } from './template/pages/line-item/line-item.component';
+import { AuthGaurd } from './helpers/auth/auth.gaurd';
+import { UnAuthorizeComponent } from './helpers/errors/unauthorized.error';
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { LineItemComponent } from './template/pages/line-item/line-item.componen
     OverviewComponent,
     NotFoundComponent,
     ChartsComponent,
-    LineItemComponent
+    LineItemComponent,
+    UnAuthorizeComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import { LineItemComponent } from './template/pages/line-item/line-item.componen
     HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [ AccountService ],
+  providers: [ AccountService, AuthGaurd ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

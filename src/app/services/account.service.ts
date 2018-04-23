@@ -9,6 +9,7 @@ export class AccountService {
 
   BASE_URL: string = "https://uncreditable-window.000webhostapp.com/financial_planning";
   myHeader: HttpHeaders = new HttpHeaders();
+  isLoggedIn: boolean = true;
 
   constructor(private Http: HttpClient) { }
   addUser(user: User): Observable<User>{
@@ -26,7 +27,13 @@ export class AccountService {
 
 
     return this.Http.get(`${this.BASE_URL}/login.php?user_Email=${email}&user_Password=${password}`, { headers: this.myHeader})
-                    .map((response) => response);
+                    .map((response) => {
+                      if (response == "404") {
+                        alert("Email or Password is invalid")
+                        this.isAuthenticated = false;
+                      } else {
+                        this.setSessionStorage(response);                      }
+                    });
                      
                    
   }
@@ -34,5 +41,17 @@ export class AccountService {
   logout() {
     sessionStorage.clear();
     localStorage.clear();
+  }
+
+  get isAuthenticated(){
+    return this.isLoggedIn;
+  }
+  
+  set isAuthenticated(status){
+    this.isLoggedIn = status;
+  }
+
+  setSessionStorage(data){
+    return sessionStorage.setItem("currentUser", data);
   }
 }

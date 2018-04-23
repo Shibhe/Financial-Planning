@@ -65,11 +65,10 @@ export class HeaderComponent implements OnInit {
 
     this.userAccountService.userLogin(email, password)
                             .subscribe((data) => {
-                              this.setSessionStorage(data);
                               this.route.navigate(['user/signin/dashboard', data.user_ID]);
                             },
                             (err: HttpErrorResponse | Error) => {
-                             
+
                              if (err instanceof HttpErrorResponse) {
                                 if (err.status == 404){
                                  console.log(err.message);
@@ -84,7 +83,5 @@ export class HeaderComponent implements OnInit {
                             });
   }
 
-  setSessionStorage(data){
-    return sessionStorage.setItem("currentUser", data);
-  }
+  
 }
