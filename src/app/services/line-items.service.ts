@@ -15,8 +15,8 @@ export class LineItemsService {
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-    return this.Http.post(`${this.BASE_URL}`, item, {headers: this.myHeader})
-                    .map((respose) => respose);
+    return this.Http.post(`${this.BASE_URL}/addLineItem.php`, item, {headers: this.myHeader})
+                    .map((respose) => console.log(JSON.parse(JSON.stringify(respose))));
   }
 
   editItem(item){
@@ -35,12 +35,28 @@ export class LineItemsService {
                     .map((respose) => respose);
   }
 
-  getItems(){
+  getItems(id){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-    return this.Http.get(`${this.BASE_URL}`, {headers: this.myHeader})
+    return this.Http.get<any>(`${this.BASE_URL}/getLineItems.php?user_ID=${id}`, {headers: this.myHeader})
                     .map((respose) => respose);
+  }
+ 
+  getSpendItems(){
+    this.myHeader.append("Content-Type", "application/json");
+    this.myHeader.append("Origin", "http://localhost:4200");
+
+    return this.Http.get<any>(`${this.BASE_URL}/getSpendType.php`, {headers: this.myHeader})
+                    .map((respose) => respose);
+  }
+
+  addSpendType(spendType){
+    this.myHeader.append("Content-Type", "application/json");
+    this.myHeader.append("Origin", "http://localhost:4200");
+
+    return this.Http.post(`${this.BASE_URL}/addSpendType.php`, spendType,  {headers: this.myHeader})
+                    .map((respose) => console.log(JSON.parse(JSON.stringify(respose))));
   }
 
 }

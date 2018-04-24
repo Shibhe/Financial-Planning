@@ -3,11 +3,13 @@
   <div class="row" style="margin-top: 30px">
     <div class="col-lg-4">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addItem"><i class="fa fa-plus"></i> Add Item</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSpendType"><i class="fa fa-plus"></i> Add Spend Type</button>
+
     </div>
   </div>
   <div class="row" style="margin-top: 20px">
     <div class="col-lg-12">
-      <table class="table table-hover" *ngIf="itemList.length > 0; else noItems">
+      <table class="table table-hover" *ngIf="lineItemList.length > 0; else noItems">
         <thead>
           <tr>
             <th>#</th>
@@ -19,15 +21,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let items of itemList; let i = index">
+          <tr *ngFor="let items of lineItemList; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ items.type}}</td>
-            <td>{{ items.itemName }}</td>
-            <td>{{ items.itemDesc }}</td>
-            <td>R {{ items.itemAmt | number: '1.2' }}</td>
+            <td>{{ items.item_Type}}</td>
+            <td>{{ items.item_Name }}</td>
+            <td>{{ items.item_Desc }}</td>
+            <td>R {{ items.item_Amt | number: '1.2' }}</td>
             <td>
               <ul class="list-inline">
-                  <li class="list-inline-item"><a class="btn btn-danger" title="Delete Item" (click)="removeItem(items.id)" data-toggle="modal" data-target="#deleteItem"><i class="fa fa-trash"></i></a></li>
+                  <li class="list-inline-item"><a class="btn btn-danger" title="Delete Item" (click)="removeItem(items.item_ID)" data-toggle="modal" data-target="#deleteItem"><i class="fa fa-trash"></i></a></li>
                   <li class="list-inline-item"><a class="btn btn-danger" title="Edit Item"><i class="fa fa-edit"></i></a></li>
               </ul>
             </td>
@@ -41,6 +43,9 @@
 <ng-template #noItems>
   <h3>No Item</h3>
 </ng-template>
+
+<!-- spinner -->
+<ng4-loading-spinner> </ng4-loading-spinner>
 
 <div class="modal fade" id="deleteItem" role="dialog">
   <div class="modal-dialog">
@@ -74,22 +79,22 @@
                           <div class="row">
                                <div class="col-lg-6">
                                   <label for="firstName">Item Name</label>
-                                  <input type="text" [(ngModel)]="lineItem.itemName"  class="form-control" name="itemName" placeholder="Enter item name">
+                                  <input type="text" [(ngModel)]="lineItem.item_Name"  class="form-control" name="itemName" placeholder="Enter item name">
                               </div>
                               <div class="col-lg-6">
                                   <label for="amount">Amount</label>
-                                  <input type="number" [(ngModel)]="lineItem.itemAmt"  class="form-control" name="itemAmt" placeholder="Enter amount">
+                                  <input type="number" [(ngModel)]="lineItem.item_Amt"  class="form-control" name="itemAmt" placeholder="Enter amount">
                               </div>
                           </div>
                           <div class="row">
                              <div class="col-lg-6">
                                 <label for="gender">Spend Type</label>
-                                <select class="form-control" [(ngModel)]="lineItem.type"  name="type">
+                                <select class="form-control" [(ngModel)]="lineItem.item_Type"  name="type">
                                   <option value="" checked disabled>
                                       Select Spend Type
                                   </option>
                                  <option value="Income">
-                                   Income
+                                  Income Accounts
                                  </option>
                                  <option value="Investments">
                                    Investments
@@ -97,14 +102,27 @@
                                  <option value="Running Cost">
                                     Running Cost
                                   </option>
-                                  <option value="Other">
+                                    <option value="Homeowner Payments">
+                                      Homeowner Payments
+                                    </option>
+                                    <option value="Expense Accounts">
+                                      Expense Accounts
+                                    </option>
+                                    <option value="Memorandum Accounts">
+                                      Memorandum Accounts
+                                    </option>
+                                    <option value="Asset Accounts">
+                                      Asset Accounts
+                                    </option>
+                                    <option value="Other">
                                       Other Loan Products
                                     </option>
                                 </select>
                            </div>
+                         
                            <div class="col-lg-6">
                               <label for="email">Description</label>
-                              <textarea placeholder="Enter item description" [(ngModel)]="lineItem.itemDesc" name="itemDesc" rows="4" class="form-control"></textarea>
+                              <textarea placeholder="Enter item description" [(ngModel)]="lineItem.item_Desc" name="itemDesc" rows="4" class="form-control"></textarea>
                          </div>
                          </div>
                         </div>
@@ -113,6 +131,75 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveItem()">Save Item</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="addSpendType" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header modal-header-primary" style="background-color: #2874A6">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="panel-title" style="color: #B2BABB">Add Spend Type</h4>
+        </div>
+        <div class="modal-body">
+            <form accept-charset="UTF-8" role="form">
+               <fieldset>
+                 <div class="col-lg-12">
+                          <div class="row">
+                               <div class="col-lg-6">
+                                <label for="gender">Spend Type</label>
+                                <select class="form-control" [(ngModel)]="spendType.spend_type_name"  name="type">
+                                  <option value="" checked disabled>
+                                      Select Spend Type
+                                  </option>
+                                 <option value="Income">
+                                  Income Accounts
+                                 </option>
+                                 <option value="Investments">
+                                   Investments
+                                 </option>
+                                 <option value="Running Cost">
+                                    Running Cost
+                                  </option>
+                                    <option value="Homeowner Payments">
+                                      Homeowner Payments
+                                    </option>
+                                    <option value="Expense Accounts">
+                                      Expense Accounts
+                                    </option>
+                                    <option value="Memorandum Accounts">
+                                      Memorandum Accounts
+                                    </option>
+                                    <option value="Asset Accounts">
+                                      Asset Accounts
+                                    </option>
+                                    <option value="Other">
+                                      Other Loan Products
+                                    </option>
+                                </select>
+                              </div>
+                              <div class="col-lg-6">
+                                  <label for="amount">Amount</label>
+                                  <input type="number" [(ngModel)]="spendType.spend_type_Amt"  class="form-control" name="spend_type_Amt" placeholder="Enter amount">
+                              </div>
+                          </div>
+                          <div class="row">
+                           <div class="col-lg-12">
+                              <label for="email">Description</label>
+                              <textarea placeholder="Enter item description" [(ngModel)]="spendType.spend_type_desc" name="itemDesc" rows="4" class="form-control"></textarea>
+                         </div>
+                         </div>
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveSpendType()">Save Type</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

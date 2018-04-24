@@ -59,7 +59,7 @@
          </div>
         </div>
       </nav>
-
+      <ng4-loading-spinner> </ng4-loading-spinner>
       <div class="container">
          <div class="w3layouts-text" >
             <h2 style="color: #CB4335">Welcome to <strong>FPT</strong> <span>South Africa</span></h2>
@@ -98,7 +98,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" (click)="userLogin()">Login</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="login()">Login</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                   </div>

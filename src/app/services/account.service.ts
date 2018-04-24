@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { User } from '../model/user.model';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AccountService {
@@ -11,7 +12,8 @@ export class AccountService {
   myHeader: HttpHeaders = new HttpHeaders();
   isLoggedIn: boolean = true;
 
-  constructor(private Http: HttpClient) { }
+  constructor(private Http: HttpClient,
+              private router: Router) { }
   addUser(user){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
@@ -21,21 +23,19 @@ export class AccountService {
                      .map((respose) => respose);
   }
 
-  userLogin(email, password): Observable<any>{
+  userLogin(email, password){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
 
     return this.Http.get(`${this.BASE_URL}/login.php?user_Email=${email}&user_Password=${password}`, { headers: this.myHeader})
                     .map((response) => {
-                      if (response == "404") {
-                        alert("Email or Password is invalid")
-                        this.isAuthenticated = false;
+                      if (response == null){
+                        alert("Email or Password is incorrect");
                       } else {
-                        this.setSessionStorage(response);                      }
+                        sessionStorage.setItem("currentUser", JSON.stringify(response));
+                      }
                     });
-                     
-                   
   }
 
   logout() {
@@ -49,9 +49,5 @@ export class AccountService {
   
   set isAuthenticated(status){
     this.isLoggedIn = status;
-  }
-
-  setSessionStorage(data){
-    return sessionStorage.setItem("currentUser", data);
   }
 }

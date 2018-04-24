@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RoutingModule } from './config/routes.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 // Components
 import { AppComponent } from './app.component';
@@ -30,6 +30,8 @@ import { ChartsComponent } from './template/pages/charts/charts.component';
 import { LineItemComponent } from './template/pages/line-item/line-item.component';
 import { AuthGaurd } from './helpers/auth/auth.gaurd';
 import { UnAuthorizeComponent } from './helpers/errors/unauthorized.error';
+import { LineItemsService } from './services/line-items.service';
+import { ReportsService } from './services/reports.service';
 
 
 @NgModule({
@@ -58,9 +60,10 @@ import { UnAuthorizeComponent } from './helpers/errors/unauthorized.error';
     RoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
-  providers: [ AccountService, AuthGaurd ],
+  providers: [ AccountService, AuthGaurd, LineItemsService, ReportsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

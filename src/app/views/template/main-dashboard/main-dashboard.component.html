@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><p style="color: black; margin-left:50px; margin-top: 10px"><strong> Logged in as {{ email }}  </strong></p></li>
+      <li class="active"><p style="color: black; margin-left:50px; margin-top: 10px"><strong> Logged in as {{ currentUser?.user_Name }}  </strong></p></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><button class="btn btn-default" style="color: black; margin-right:100px; margin-top: 5px" (click)="logout()"> <strong> Logout</strong></button></li>

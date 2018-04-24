@@ -8,16 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-dashboard.component.css']
 })
 export class MainDashboardComponent implements OnInit {
-  
-  email="Joseph";
 
+  currentUser;
 
   constructor(private accountService: AccountService,
               private route: Router) { }
 
   ngOnInit() {
     if (!sessionStorage.getItem("currentUser")){
-      // this.route.navigate(['unathorize']);
+       this.route.navigate(['home']);
+    } else {
+      this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
     }
   }
 

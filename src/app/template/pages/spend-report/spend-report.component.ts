@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportsService } from '../../../services/reports.service';
 
 @Component({
   selector: 'app-spend-report',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpendReportComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _ReportsService: ReportsService) { }
 
   ngOnInit() {
+      let id = JSON.parse(sessionStorage.getItem("currentUser"));
+
+      this._ReportsService.getSpentReport(id.user_ID)
+                          .subscribe((data) => console.log(data));
   }
 
 }
