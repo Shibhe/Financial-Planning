@@ -27,11 +27,12 @@ export class LineItemsService {
                     .map((respose) => respose);
   }
 
-  removeItem(id){
+  removeItem(id, user_ID){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
+    
 
-    return this.Http.delete(`${this.BASE_URL}/removeItem.php?id=${id}`, {headers: this.myHeader})
+    return this.Http.delete(`${this.BASE_URL}/deleteLineItem.php?item_ID=${id}&user_ID=${user_ID}`, {headers: this.myHeader})
                     .map((respose) => respose);
   }
 

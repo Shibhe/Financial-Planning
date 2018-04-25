@@ -20,8 +20,8 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let items of lineItemList; let i = index">
+        <tbody *ngFor="let itemList of lineItemList">
+          <tr *ngFor="let items of itemList; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ items.item_Type}}</td>
             <td>{{ items.item_Name }}</td>
@@ -29,7 +29,7 @@
             <td>R {{ items.item_Amt | number: '1.2' }}</td>
             <td>
               <ul class="list-inline">
-                  <li class="list-inline-item"><a class="btn btn-danger" title="Delete Item" (click)="removeItem(items.item_ID)" data-toggle="modal" data-target="#deleteItem"><i class="fa fa-trash"></i></a></li>
+                  <li class="list-inline-item"><a class="btn btn-danger" title="Delete Item" (click)="removeItem(items.item_ID)"><i class="fa fa-trash"></i></a></li>
                   <li class="list-inline-item"><a class="btn btn-danger" title="Edit Item"><i class="fa fa-edit"></i></a></li>
               </ul>
             </td>
