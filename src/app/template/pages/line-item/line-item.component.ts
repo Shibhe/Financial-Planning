@@ -69,6 +69,7 @@ export class LineItemComponent implements OnInit {
       this._LineItemsService.addItem(this.lineItem)
                             .subscribe((data) => {
                               this.spinnerService.hide();
+                              console.log(data);
                               alert(data);
                             },(err: HttpErrorResponse | Error) => {
                               this.spinnerService.hide();

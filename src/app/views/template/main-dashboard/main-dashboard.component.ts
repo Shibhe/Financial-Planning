@@ -19,6 +19,7 @@ export class MainDashboardComponent implements OnInit {
        this.route.navigate(['home']);
     } else {
       this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      console.log(JSON.parse(sessionStorage.getItem("currentUser")));
     }
   }
 

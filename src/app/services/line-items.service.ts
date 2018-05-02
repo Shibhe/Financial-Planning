@@ -16,7 +16,7 @@ export class LineItemsService {
     this.myHeader.append("Origin", "http://localhost:4200");
 
     return this.Http.post(`${this.BASE_URL}/addLineItem.php`, item, {headers: this.myHeader})
-                    .map((respose) => console.log(JSON.parse(JSON.stringify(respose))));
+                    .map((respose) => respose);
   }
 
   editItem(item){
@@ -57,7 +57,7 @@ export class LineItemsService {
     this.myHeader.append("Origin", "http://localhost:4200");
 
     return this.Http.post(`${this.BASE_URL}/addSpendType.php`, spendType,  {headers: this.myHeader})
-                    .map((respose) => console.log(JSON.parse(JSON.stringify(respose))));
+                    .map((respose) => respose);
   }
 
 }
