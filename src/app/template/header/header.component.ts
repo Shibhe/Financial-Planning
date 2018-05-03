@@ -39,10 +39,11 @@ export class HeaderComponent implements OnInit {
 
   submitUser(){
       this.spinnerService.show();
-
+ 
       this.userAccountService.addUser(this.user)
           .subscribe((data) => {
             this.spinnerService.hide();
+            
             this.user = new User();
           },
           (err: HttpErrorResponse | Error) => {
@@ -65,6 +66,7 @@ export class HeaderComponent implements OnInit {
   login(){
     let email = this.user.user_Email;
     let password = this.user.user_Password;
+    
     this.spinnerService.show();
     this.userAccountService.userLogin(email, password)
                             .subscribe((data) => {

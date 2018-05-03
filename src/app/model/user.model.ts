@@ -5,4 +5,5 @@ export class User{
     user_IdNumber: string;
     user_Email: string;
     user_Password: string;
+    is_Archived = 1;
 }

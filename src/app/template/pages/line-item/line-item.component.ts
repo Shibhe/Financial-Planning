@@ -69,8 +69,7 @@ export class LineItemComponent implements OnInit {
       this._LineItemsService.addItem(this.lineItem)
                             .subscribe((data) => {
                               this.spinnerService.hide();
-                              console.log(data);
-                              alert(data);
+                              
                             },(err: HttpErrorResponse | Error) => {
                               this.spinnerService.hide();
                              if (err instanceof HttpErrorResponse) {
@@ -91,11 +90,14 @@ export class LineItemComponent implements OnInit {
   saveSpendType()
   {
       this.spinnerService.show();
-      
+
+      this.spendType.user_ID = this.currentUser.user_ID;
+
       this._LineItemsService.addSpendType(this.spendType)
                             .subscribe((data) => {
+
                               this.spinnerService.hide();
-                              alert(data);
+                              
                             },(err: HttpErrorResponse | Error) => {
                               this.spinnerService.hide();
                              if (err instanceof HttpErrorResponse) {
