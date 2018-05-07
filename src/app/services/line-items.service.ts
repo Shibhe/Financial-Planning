@@ -57,35 +57,26 @@ export class LineItemsService {
                     .map((respose) => respose);
   }
  
-  getSpendItems(){
-    this.myHeader.append("Content-Type", "application/json");
-    this.myHeader.append("Origin", "http://localhost:4200");
-
-    return this.Http.get<any>(`${this.BASE_URL}/getSpendType.php`, {headers: this.myHeader})
-                    .map((respose) => respose);
-  }
-
   addSpendType(spendType: SpendType){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
     return this.Http.get<any>(`${this.BASE_URL}/addSpendType.php?spend_type_name=${spendType.spend_type_name}&spend_type_desc=${spendType.spend_type_desc}&spend_type_Amt=${spendType.spend_type_Amt}&user_ID=${spendType.user_ID}`, {headers: this.myHeader})
-                    .map((respose) => {
-                      console.log(respose);
-                      if (respose.success == 1){
-                        alert(respose.message);
-                      } else if (respose.success == 0){
-                        alert(respose.message);
+                    .map((response) => {
+                      if (response.success == 1){
+                        alert(response.message);
+                      } else if (response.success == 0){
+                        alert(response.message);
                       }
                     });
   }
 
-  /**removeSpendType(spendType: SpendType){
+  getSpendType(user_ID){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-    return this.Http.get(`${this.BASE_URL}/deleteSpendType.php?spend_type_ID=${spendType.spend_type_ID}&user_ID=${spendType.user_ID}&spend_type_Amt=${spendType.spend_type_Amt}&user_ID=${spendType.user_ID}`,  {headers: this.myHeader})
+    return this.Http.get<any>(`${this.BASE_URL}/getSpendType.php?user_ID=${user_ID}`,  {headers: this.myHeader})
                     .map((respose) => respose);
-  }**/
+  }
 
 }

@@ -28,6 +28,8 @@ export class LineItemComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
     this.spinnerService.show();
+   
+    this.showSpentTypes();
     this._LineItemsService.getItems(this.currentUser.user_ID)
                           .subscribe((data) => {
 
@@ -56,9 +58,7 @@ export class LineItemComponent implements OnInit {
                             } else {
                               console.log(err.message);
                             }
-                          });
-
-                          
+                          });     
   }
 
   saveItem()
@@ -127,6 +127,33 @@ export class LineItemComponent implements OnInit {
                             this.spinnerService.hide();
                            if (err instanceof HttpErrorResponse) {
                             this.spinnerService.hide();
+                              if (err.status == 404){
+                               console.log(err.message);
+                              } else if (err.status == 401){
+                                console.log(err.message);
+                              } else if (err.status == 400){
+                                console.log(err.message);
+                              }
+                            } else {
+                              console.log(err.message);
+                            }
+                          });
+  }
+
+  showSpentTypes(){
+    //this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+    this.spinnerService.show();
+    this._LineItemsService.getSpendType(this.currentUser.user_ID)
+                          .subscribe((data) => {
+                            this.spinnerService.hide();
+                              this.spendItems.push(data);
+                              console.log(this.spendItems);
+                              localStorage.setItem("spentItems", JSON.stringify(data));
+                            
+                          },(err: HttpErrorResponse | Error) => {
+                            this.spinnerService.hide();
+                           if (err instanceof HttpErrorResponse) {
                               if (err.status == 404){
                                console.log(err.message);
                               } else if (err.status == 401){

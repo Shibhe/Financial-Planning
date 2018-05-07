@@ -40,6 +40,8 @@ export class HeaderComponent implements OnInit {
   submitUser(){
       this.spinnerService.show();
  
+      this.user.is_Archived = 1;
+      
       this.userAccountService.addUser(this.user)
           .subscribe((data) => {
             this.spinnerService.hide();

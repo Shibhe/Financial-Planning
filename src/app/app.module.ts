@@ -32,6 +32,8 @@ import { AuthGaurd } from './helpers/auth/auth.gaurd';
 import { UnAuthorizeComponent } from './helpers/errors/unauthorized.error';
 import { LineItemsService } from './services/line-items.service';
 import { ReportsService } from './services/reports.service';
+import { MyProfileComponent } from './template/pages/my-profile/my-profile.component';
+import { SpentItemComponent } from './template/pages/spent-item/spent-item.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { ReportsService } from './services/reports.service';
     NotFoundComponent,
     ChartsComponent,
     LineItemComponent,
-    UnAuthorizeComponent
+    UnAuthorizeComponent,
+    MyProfileComponent,
+    SpentItemComponent
   ],
   imports: [
     BrowserModule,

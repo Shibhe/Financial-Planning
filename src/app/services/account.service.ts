@@ -47,6 +47,21 @@ export class AccountService {
                     });
   }
 
+  edit(email, password, user_ID){
+    this.myHeader.append("Content-Type", "application/json");
+    this.myHeader.append("Origin", "http://localhost:4200");
+
+    return this.Http.get<any>(`${this.BASE_URL}/editDetail.php?user_Email=${email}&user_Password=${password}&user_ID=${user_ID}`, { headers: this.myHeader})
+                    .map((response) => {
+                      console.log(response);
+                      if (response.success == 0){
+                        alert(response.message);
+                      } else {
+                        alert(response.message);
+                      }
+                    }, (error) => console.log(error));
+  }
+
   logout() {
     sessionStorage.clear();
     localStorage.clear();

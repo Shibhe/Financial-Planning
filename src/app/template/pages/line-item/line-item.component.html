@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h1><b>LINE ITEMS</b></h1>
+  <h1><b>ITEMS</b></h1>
   <div class="row" style="margin-top: 30px">
     <div class="col-lg-4">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addItem"><i class="fa fa-plus"></i> Add Item</button>
@@ -8,7 +8,8 @@
     </div>
   </div>
   <div class="row" style="margin-top: 20px">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
+        <h4><caption>Line Items</caption></h4>
       <table class="table table-hover" *ngIf="lineItemList.length > 0; else noItems">
         <thead>
           <tr>
@@ -36,6 +37,28 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="col-lg-6">
+        <h4><caption>Spent Types</caption></h4>
+        <table class="table table-hover" *ngIf="spendItems.length > 0; else noItems">
+           
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Spend Type</th>
+                <th>Descritpion</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let itemList of spendItems">
+              <tr *ngFor="let items of itemList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ items.spend_type_name }}</td>
+                <td>{{ items.spend_type_desc }}</td>
+                <td>R {{ items.spend_type_Amt | number: '1.2' }}</td>
+              </tr>
+            </tbody>
+          </table>
     </div>
   </div>
 </div>

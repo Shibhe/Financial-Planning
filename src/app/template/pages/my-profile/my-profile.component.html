@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="well well-sm">
+              <div class="row">
+                  <div class="col-sm-6 col-md-4">
+                      <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                  </div>
+                  <div class="col-sm-6 col-md-8">
+                      <h2>
+                          {{ user.user_Name }} {{ user.user_Surname }}</h2>
+                      <p>
+                          <i class="glyphicon glyphicon-envelope"></i> {{ user.user_Email }}
+                          <br />
+                          <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com"> {{ user.user_Gender }} </a>
+                          <br />
+                          <i class="glyphicon glyphicon-gift"></i> {{ user.user_IdNumber }}</p>
+                      <!-- Split button -->
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDetails">Edit Details</button>
+                          <button type="button" class="btn btn-danger">Remove Account</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editDetails" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header modal-header-primary" style="background-color: #2874A6">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="panel-title" style="color: #B2BABB">Edit Details</h4>
+      </div>
+      <div class="modal-body">
+          <form accept-charset="UTF-8" role="form">
+             <fieldset>
+               <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="amount">Email Address</label>
+                                <input type="email" [(ngModel)]="userDetails.user_Email" class="form-control" name="emailAddress" placeholder="Enter email address">
+                            </div>
+                            <div class="col-lg-6">
+                              <label for="amount">Password</label>
+                              <input type="email" [(ngModel)]="userDetails.user_Password" class="form-control" name="emailAddress" placeholder="Enter email address">
+                          </div>
+                        </div>
+                      </div>
+              </fieldset>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editDetail()">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
