@@ -18,6 +18,7 @@ export class LineItemComponent implements OnInit {
   spendItems: Array<any> = [];
   lineItem: LineItems = new LineItems();
   spendType: SpendType = new SpendType();
+  categories: any[] = [];
   currentUser;
   constructor(private _LineItemsService: LineItemsService,
     private spinnerService: Ng4LoadingSpinnerService) { }
@@ -30,6 +31,8 @@ export class LineItemComponent implements OnInit {
     this.spinnerService.show();
    
     this.showSpentTypes();
+    this.getCategories();
+
     this._LineItemsService.getItems(this.currentUser.user_ID)
                           .subscribe((data) => {
 
@@ -141,7 +144,6 @@ export class LineItemComponent implements OnInit {
   }
 
   showSpentTypes(){
-    //this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
     this.spinnerService.show();
     this._LineItemsService.getSpendType(this.currentUser.user_ID)
@@ -151,6 +153,29 @@ export class LineItemComponent implements OnInit {
                               console.log(this.spendItems);
                               localStorage.setItem("spentItems", JSON.stringify(data));
                             
+                          },(err: HttpErrorResponse | Error) => {
+                            this.spinnerService.hide();
+                           if (err instanceof HttpErrorResponse) {
+                              if (err.status == 404){
+                               console.log(err.message);
+                              } else if (err.status == 401){
+                                console.log(err.message);
+                              } else if (err.status == 400){
+                                console.log(err.message);
+                              }
+                            } else {
+                              console.log(err.message);
+                            }
+                          });
+  }
+
+  getCategories(){
+    this.spinnerService.show();
+    this._LineItemsService.getCategory()
+                          .subscribe((data) => {
+                            this.spinnerService.hide();
+                             this.categories.push(data);
+                             console.log(this.categories);
                           },(err: HttpErrorResponse | Error) => {
                             this.spinnerService.hide();
                            if (err instanceof HttpErrorResponse) {

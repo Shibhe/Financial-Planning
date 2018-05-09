@@ -15,6 +15,7 @@ export class SpentItemComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
+    
    
   }
 

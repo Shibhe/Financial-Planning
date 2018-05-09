@@ -4,5 +4,6 @@ export class LineItems {
     item_Amt: string;
     item_Desc: string;
     user_ID: number;
-    item_Type: string;
+    item_Type_ID: string;
+    budget_date: string;
 }

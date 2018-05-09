@@ -8,13 +8,17 @@ import { ReportsService } from '../../../services/reports.service';
 })
 export class SpendReportComponent implements OnInit {
 
+  typeSpend: any[] = [];
   constructor(private _ReportsService: ReportsService) { }
 
   ngOnInit() {
       let id = JSON.parse(sessionStorage.getItem("currentUser"));
 
       this._ReportsService.getSpentReport(id.user_ID)
-                          .subscribe((data) => console.log(data));
+                          .subscribe((data) => {
+                            this.typeSpend.push(data);
+                            console.log(this.typeSpend);
+                          });
   }
 
 }

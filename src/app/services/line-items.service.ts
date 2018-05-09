@@ -16,7 +16,7 @@ export class LineItemsService {
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-    return this.Http.get<any>(`${this.BASE_URL}/addLineItem.php?item_Name=${item.item_Name}&item_Amt=${item.item_Amt}&item_Desc=${item.item_Desc}&item_Type=${item.item_Type}&user_ID=${item.user_ID}`, {headers: this.myHeader})
+    return this.Http.get<any>(`${this.BASE_URL}/addLineItem.php?item_Name=${item.item_Name}&item_Amt=${item.item_Amt}&item_Desc=${item.item_Desc}&item_Type_ID=${item.item_Type_ID}&user_ID=${item.user_ID}&budget_date=${item.budget_date}`, {headers: this.myHeader})
                       .map((respose) => {
                         if (respose.success == 1){
                           alert(respose.message);
@@ -61,7 +61,7 @@ export class LineItemsService {
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-    return this.Http.get<any>(`${this.BASE_URL}/addSpendType.php?spend_type_name=${spendType.spend_type_name}&spend_type_desc=${spendType.spend_type_desc}&spend_type_Amt=${spendType.spend_type_Amt}&user_ID=${spendType.user_ID}`, {headers: this.myHeader})
+    return this.Http.get<any>(`${this.BASE_URL}/addSpendType.php?spend_type_name=${spendType.spend_type_name_ID}&spend_type_desc=${spendType.spend_type_desc}&spend_type_Amt=${spendType.spend_type_Amt}&user_ID=${spendType.user_ID}`, {headers: this.myHeader})
                     .map((response) => {
                       if (response.success == 1){
                         alert(response.message);
@@ -70,12 +70,20 @@ export class LineItemsService {
                       }
                     });
   }
-
+  
   getSpendType(user_ID){
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
     return this.Http.get<any>(`${this.BASE_URL}/getSpendType.php?user_ID=${user_ID}`,  {headers: this.myHeader})
+                    .map((respose) => respose);
+  }
+
+  getCategory(){
+    this.myHeader.append("Content-Type", "application/json");
+    this.myHeader.append("Origin", "http://localhost:4200");
+
+    return this.Http.get<any[]>(`${this.BASE_URL}/getCategories.php`,  {headers: this.myHeader})
                     .map((respose) => respose);
   }
 

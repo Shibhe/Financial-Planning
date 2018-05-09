@@ -24,7 +24,7 @@
         <tbody *ngFor="let itemList of lineItemList">
           <tr *ngFor="let items of itemList; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ items.item_Type}}</td>
+            <td>{{ items.cat_name}}</td>
             <td>{{ items.item_Name }}</td>
             <td>{{ items.item_Desc }}</td>
             <td>R {{ items.item_Amt | number: '1.2' }}</td>
@@ -53,7 +53,7 @@
             <tbody *ngFor="let itemList of spendItems">
               <tr *ngFor="let items of itemList; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ items.spend_type_name }}</td>
+                <td>{{ items.cat_name }}</td>
                 <td>{{ items.spend_type_desc }}</td>
                 <td>R {{ items.spend_type_Amt | number: '1.2' }}</td>
               </tr>
@@ -112,41 +112,24 @@
                           <div class="row">
                              <div class="col-lg-6">
                                 <label for="gender">Spend Type</label>
-                                <select class="form-control" [(ngModel)]="lineItem.item_Type"  name="type">
+                                <select class="form-control" [(ngModel)]="lineItem.item_Type_ID"  name="type">
                                   <option value="" checked disabled>
                                       Select Spend Type
                                   </option>
-                                 <option value="Income">
-                                  Income Accounts
-                                 </option>
-                                 <option value="Investment">
-                                   Investments
-                                 </option>
-                                 <option value="Running Cost">
-                                    Running Cost
-                                  </option>
-                                    <option value="Homeowner Payment">
-                                      Homeowner Payments
-                                    </option>
-                                    <option value="Expense Accounts">
-                                      Expense Accounts
-                                    </option>
-                                    <option value="Memorandum Account">
-                                      Memorandum Accounts
-                                    </option>
-                                    <option value="Asset Account">
-                                      Asset Accounts
-                                    </option>
-                                    <option value="Other">
-                                      Other Loan Products
-                                    </option>
+                                 <option *ngFor="let cat of categories['0']" [value]="cat.spend_type_cat_ID">{{cat.cat_name}}</option>
                                 </select>
                            </div>
                          
                            <div class="col-lg-6">
+                              <label for="amount">Budget Date</label>
+                              <input type="date" [(ngModel)]="lineItem.budget_date"  class="form-control" name="budget_date">
+                         </div>
+                         </div>
+                         <div class="row">
+                           <div class="col-lg-12">
                               <label for="email">Description</label>
                               <textarea placeholder="Enter item description" [(ngModel)]="lineItem.item_Desc" name="itemDesc" rows="4" class="form-control"></textarea>
-                         </div>
+                           </div>
                          </div>
                         </div>
                 </fieldset>
@@ -176,34 +159,11 @@
                           <div class="row">
                                <div class="col-lg-6">
                                 <label for="gender">Spend Type</label>
-                                <select class="form-control" [(ngModel)]="spendType.spend_type_name"  name="type">
-                                  <option value="" checked disabled>
-                                      Select Spend Type
-                                  </option>
-                                 <option value="Income">
-                                  Income Accounts
-                                 </option>
-                                 <option value="Investments">
-                                   Investments
-                                 </option>
-                                 <option value="Running Cost">
-                                    Running Cost
-                                  </option>
-                                    <option value="Homeowner Payments">
-                                      Homeowner Payments
+                                <select class="form-control" [(ngModel)]="spendType.spend_type_name_ID"  name="type">
+                                    <option value="" checked disabled>
+                                        Select Spend Type
                                     </option>
-                                    <option value="Expense Accounts">
-                                      Expense Accounts
-                                    </option>
-                                    <option value="Memorandum Accounts">
-                                      Memorandum Accounts
-                                    </option>
-                                    <option value="Asset Accounts">
-                                      Asset Accounts
-                                    </option>
-                                    <option value="Other">
-                                      Other Loan Products
-                                    </option>
+                                   <option *ngFor="let cat of categories['0']" [value]="cat.spend_type_cat_ID">{{cat.cat_name}}</option>
                                 </select>
                               </div>
                               <div class="col-lg-6">

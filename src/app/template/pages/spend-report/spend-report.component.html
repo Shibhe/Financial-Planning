@@ -21,28 +21,14 @@
                 <th>Dec 12</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody *ngFor="let j of typeSpend">
+              <tr *ngFor="let x of j.spendType">
                 <td colspan="3">
-                  <strong>Income</strong>
-                  <ul >
-                      <li>First item</li>
-                      <li>Second item</li>
-                      <li>Third item</li>
+                  <strong>{{ x.cat_name }}</strong>
+                  <ul *ngFor="let y of x.lineItems">
+                      <li>{{ y.item_Name }}</li>
                   </ul>
                 </td>
-                <td>Argentina</td>
-                <td>Spanish</td>
-                <td>41,803,125</td>
-                <td>31.3</td>
-                <td>2,780,387</td>
-                <td>Argentina</td>
-                <td>Spanish</td>
-                <td>41,803,125</td>
-                <td>31.3</td>
-                <td>2,780,387</td>
-                <td>Argentina</td>
-                <td>Spanish</td>
               </tr>
           </table>
         </div><!--end of .table-responsive-->
