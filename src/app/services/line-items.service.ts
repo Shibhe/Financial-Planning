@@ -83,7 +83,7 @@ export class LineItemsService {
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-    return this.Http.get<any[]>(`${this.BASE_URL}/getCategories.php`,  {headers: this.myHeader})
+    return this.Http.get<any>(`${this.BASE_URL}/getCategories.php`,  {headers: this.myHeader})
                     .map((respose) => respose);
   }
 

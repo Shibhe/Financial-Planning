@@ -1,51 +1,32 @@
 <div class="container">
     <div class="row">
-      <div class="col-xs-12">
-        <div class="table-responsive">
-          <table summary="This table shows how to create responsive tables using Bootstrap's default functionality" class="table table-bordered table-hover">
-            <caption class="text-center"><strong><h3>Budget Report</h3></strong></caption>
-            <thead>
-              <tr>
-                <th colspan="3"></th>
-                <th>Jan 12</th>
-                <th>Feb 12</th>
-                <th>Mar 12</th>
-                <th>Apr 12</th>
-                <th>May 12</th>
-                <th>Jun 12</th>
-                <th>Jul 12</th>
-                <th>Aug 12</th>
-                <th>Sept 12</th>
-                <th>Oct 12</th>
-                <th>Nov 12</th>
-                <th>Dec 12</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="3">
-                  <strong>Income</strong>
-                  <ul >
-                      <li>First item</li>
-                      <li>Second item</li>
-                      <li>Third item</li>
-                  </ul>
-                </td>
-                <td>Argentina</td>
-                <td>Spanish</td>
-                <td>41,803,125</td>
-                <td>31.3</td>
-                <td>2,780,387</td>
-                <td>Argentina</td>
-                <td>Spanish</td>
-                <td>41,803,125</td>
-                <td>31.3</td>
-                <td>2,780,387</td>
-                <td>Argentina</td>
-                <td>Spanish</td>
-              </tr>
-          </table>
-        </div><!--end of .table-responsive-->
+      <div class="col-xs-12 col-lg-12" *ngFor="let j of budgetType">
+          <caption><strong><h3>Budget Report</h3></strong></caption>
+         <div class="panel panel-default" *ngFor="let x of j.budgetType">
+           <div class="panel-heading">
+              <div class="panel-title"><strong>{{ x.cat_name }}</strong> <strong style="float:right">R {{ x.spend_type_Amt | number:'2.2-2' }}</strong></div>
+           </div> 
+           <div class="panel-body">
+              <ul *ngFor="let y of x.lineItems">
+                  <li>
+                      <div class="row">
+                          <div class="col-lg-4">
+                              {{ y.item_Name }}
+                          </div>
+                          <div class="col-lg-4">
+                              <p style="text-align:center">{{ y.budget_date | date:'mediumDate' }}</p>
+                            </div>
+                            <div class="col-lg-4">
+                              <p style="float:right">R {{ y.item_Amt | number:'2.2-2' }}</p>
+                            </div>
+                        </div>
+                  </li>
+              </ul>
+           </div>
+           <div class="panel-footer">
+              <p style="float:right">R {{ totalAmt }}</p>
+           </div>
+         </div>
       </div>
     </div>
   </div>

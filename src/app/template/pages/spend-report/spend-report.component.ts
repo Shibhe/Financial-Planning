@@ -9,6 +9,8 @@ import { ReportsService } from '../../../services/reports.service';
 export class SpendReportComponent implements OnInit {
 
   typeSpend: any[] = [];
+  totalAmt: number = 0;
+
   constructor(private _ReportsService: ReportsService) { }
 
   ngOnInit() {
@@ -16,9 +18,19 @@ export class SpendReportComponent implements OnInit {
 
       this._ReportsService.getSpentReport(id.user_ID)
                           .subscribe((data) => {
-                            this.typeSpend.push(data);
+                          // console.log(data);
+                          
+                              for (let index = 0; index < data.spendType.length; index++) {
+                                for (let i = 0; i < data.spendType[index].lineItems.length; i++){
+                                    this.totalAmt = this.totalAmt + Number(data.spendType[index].lineItems[i].item_Amt);
+                                }
+                              }
+                             
+                              this.typeSpend.push(data);
+                            })
+                           // this.typeSpend.push(data);
                             console.log(this.typeSpend);
-                          });
+                          
   }
 
 }

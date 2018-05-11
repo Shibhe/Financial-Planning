@@ -26,11 +26,11 @@ export class ReportsService {
                       .map((response) => response);
   }
 
-  getBudgetReport() {
+  getBudgetReport(id) {
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-     return this.http.get<Array<any>>(`${this.BASE_URL}/`, { headers: this.myHeader})
+     return this.http.get<any>(`${this.BASE_URL}/getBudgetReport.php?user_ID=${id}`, { headers: this.myHeader})
                       .map((response) => response);
   }
 
@@ -38,7 +38,7 @@ export class ReportsService {
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-     return this.http.get<Array<any>>(`${this.BASE_URL}/spentItemsReport.php?user_ID=${id}`, { headers: this.myHeader})
+     return this.http.get<any>(`${this.BASE_URL}/spentItemsReport.php?user_ID=${id}`, { headers: this.myHeader})
                       .map((response) => response);
   }
 
