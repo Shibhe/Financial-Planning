@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { User } from '../model/user.model';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { Bank_Details } from '../model/bank_details.model';
 
 @Injectable()
 export class AccountService {
@@ -42,6 +43,7 @@ export class AccountService {
                         this.isAuthenticated = false;
                         alert(response.message);
                       } else {
+                       // alert("Login Successful");
                         sessionStorage.setItem("currentUser", JSON.stringify(response));
                       }
                     });
@@ -60,6 +62,21 @@ export class AccountService {
                         alert(response.message);
                       }
                     }, (error) => console.log(error));
+  }
+
+  addBank(user: Bank_Details): Observable<any>{
+    this.myHeader.append("Content-Type", "application/json");
+    this.myHeader.append("Origin", "http://localhost:4200");
+
+    return this.Http.get(`${this.BASE_URL}/addBankDetail.php?acc_Type=${user.acc_Type}&acc_Name=${user.acc_Name}&acc_ExpDate=${user.acc_ExpDate}&status_ID=${user.status_ID}&user_ID=${user.user_ID}`, {headers: this.myHeader})
+                     .map((respose: any) => {
+                       console.log(respose);
+                      if (respose.success == 0){
+                        alert(respose.message);
+                      } else if (respose.success == 1) {
+                        alert(respose.message);
+                      }
+                     });
   }
 
   logout() {

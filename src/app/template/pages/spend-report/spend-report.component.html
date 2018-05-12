@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-xs-12 col-lg-12" *ngFor="let j of typeSpend">
           <caption><strong><h3>Spend Report</h3></strong></caption>
-         <div class="panel panel-default" *ngFor="let x of j.spendType">
+         <div class="panel panel-danger" *ngFor="let x of j.spendType">
            <div class="panel-heading">
               <div class="panel-title"><strong>{{ x.cat_name }}</strong> <strong style="float:right">R {{ x.spend_type_Amt }}</strong></div>
            </div>
@@ -24,9 +24,11 @@
               </ul>
            </div>
            <div class="panel-footer">
-              <p style="float:right">R {{ totalAmt }}</p>
+                <p class="text-right">R {{ totalAmt }}</p>
            </div>
          </div>
       </div>
     </div>
   </div>
+
+  <ng4-loading-spinner> </ng4-loading-spinner>

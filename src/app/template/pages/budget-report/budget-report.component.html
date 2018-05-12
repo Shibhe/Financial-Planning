@@ -1,32 +1,35 @@
 <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-lg-12" *ngFor="let j of budgetType">
+      <div class="col-xs-12 col-lg-12" >
           <caption><strong><h3>Budget Report</h3></strong></caption>
-         <div class="panel panel-default" *ngFor="let x of j.budgetType">
-           <div class="panel-heading">
-              <div class="panel-title"><strong>{{ x.cat_name }}</strong> <strong style="float:right">R {{ x.spend_type_Amt | number:'2.2-2' }}</strong></div>
-           </div> 
-           <div class="panel-body">
-              <ul *ngFor="let y of x.lineItems">
-                  <li>
-                      <div class="row">
-                          <div class="col-lg-4">
-                              {{ y.item_Name }}
-                          </div>
-                          <div class="col-lg-4">
-                              <p style="text-align:center">{{ y.budget_date | date:'mediumDate' }}</p>
-                            </div>
-                            <div class="col-lg-4">
-                              <p style="float:right">R {{ y.item_Amt | number:'2.2-2' }}</p>
-                            </div>
-                        </div>
-                  </li>
-              </ul>
-           </div>
-           <div class="panel-footer">
-              <p style="float:right">R {{ totalAmt }}</p>
-           </div>
+         <div *ngFor="let j of typeSpend"> 
+            <div class="panel panel-success" *ngFor="let x of j.budgetType">
+                <div class="panel-heading">
+                   <div class="panel-title"><strong>{{ x.cat_name }}</strong> <strong style="float:right">R {{ x.spend_type_Amt | number:'2.2-2' }}</strong></div>
+                </div> 
+                <div class="panel-body">
+                   <ul *ngFor="let y of x.lineItems">
+                       <li>
+                           <div class="row">
+                               <div class="col-lg-4">
+                                   {{ y.item_Name }}
+                               </div>
+                               <div class="col-lg-4">
+                                   <p style="text-align:center">{{ y.budget_date | date:'mediumDate' }}</p>
+                                 </div>
+                                 <div class="col-lg-4">
+                                   <p style="float:right">R {{ y.item_Amt | number:'2.2-2' }}</p>
+                                 </div>
+                             </div>
+                       </li>
+                   </ul>
+                </div>
+                <div class="panel-footer">
+                    <p class="text-right">R {{ totalAmt }}</p>
+                </div>
+              </div>
          </div>
       </div>
     </div>
   </div>
+  <ng4-loading-spinner> </ng4-loading-spinner>

@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Bank_Details } from '../../model/bank_details.model';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class HeaderComponent implements OnInit {
 
   user: User = new User();
+ 
 
   constructor(private userAccountService: AccountService,
               private route: Router,

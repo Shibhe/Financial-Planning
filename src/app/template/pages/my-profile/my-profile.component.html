@@ -18,7 +18,8 @@
                       <!-- Split button -->
                       <div class="btn-group">
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDetails">Edit Details</button>
-                          <button type="button" class="btn btn-danger">Remove Account</button>
+                          <button type="button" class="btn btn-warning">Remove Account</button>
+                          <button type="button" class="btn btn-danger" data-target="#addBank" data-toggle="modal">Add Bank</button>
                       </div>
                   </div>
               </div>
@@ -61,3 +62,59 @@
     
   </div>
 </div>
+<div class="modal fade" id="addBank" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header modal-header-primary" style="background-color: #2874A6">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="panel-title" style="color: #B2BABB">Bank Details</h4>
+            </div>
+            <div class="modal-body">
+                <form accept-charset="UTF-8" role="form">
+                   <fieldset>
+                              
+                              <div class="row">
+                                   <div class="col-lg-12">
+                                        <caption>Bank Details</caption>
+                                   </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                            <label for="email">Account Name</label>
+                                            <input type="email" class="form-control" [(ngModel)]="bank.acc_Name" name="acc_Name" placeholder="Enter Account Name">
+                                    </div>
+                              </div>
+                              <div class="row">
+                                    <div class="col-lg-12">
+                                            <label for="email">Account Type</label>
+                                           <select [(ngModel)]="bank.acc_Type" name="acc_Type" class="form-control">
+                                              <option disabled selected>Select Account Type</option>
+                                              <option value="Cheque">Basic Checking Accounts</option>
+                                              <option value="Savings">Savings Accounts</option>
+                                              <option value="Interest-Bearing">Interest-Bearing Checking Accounts</option>
+                                              <option value="MMDA">Money Market Deposit Accounts</option>
+                                              <option value="Time Deposits">Certificates of Deposit</option>
+                                           </select>
+                                          </div>
+                              </div>
+                              <div class="row">
+                                    <div class="col-lg-12">
+                                            <label for="email">Expiry Date</label>
+                                            <input type="date" class="form-control" [(ngModel)]="bank.acc_ExpDate" name="acc_ExpDate">
+                                        </div>
+                              </div>
+                                
+                                
+                                  
+                    </fieldset>
+                </form>            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submitBank()">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <ng4-loading-spinner> </ng4-loading-spinner>

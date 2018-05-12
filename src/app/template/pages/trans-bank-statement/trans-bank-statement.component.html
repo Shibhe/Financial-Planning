@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="row" style="margin-top: 30px">
       <div class="col-lg-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bankStatement"><i class="fa fa-file"></i> IMPORT A BANK STATEMENT</button>
+        <label>IMPORT A BANK STATEMENT</label>
+        <input type="file" id="import" class="form-control" accept=".csv,xlsx" (change)="handleFileSelect($event)" />  
       </div>
     </div>
     <div class="row" style="margin-top: 20px">
@@ -90,23 +91,24 @@
           </div>
           <div class="modal-body">
               <form accept-charset="UTF-8" role="form">
-                 <fieldset>
-                         <div class="row">
+                 <fieldset *ngFor="let x of bank_Statement">
+                        <div class="row">
                             <div class="col-lg-12">
-                                <div class="panel-group">
-                                    <div class="panel panel-default">
-                                      <div class="panel-body">List of downloaded bank statements</div>
+                               <div class="panel panel-default">
+                                    <div class="panel-body">List of downloaded bank statements
+                                      <ul *ngFor="let y of x">
+                                        <li>{{ y.name }}</li>
+                                      </ul>
                                     </div>
-                                  </div>
+                                </div>
+                                 
                             </div>
                          </div>
                          <div class="row">
                             <div class="col-lg-12">
                                 <select class="form-control">
                                   <option>Select a bank</option>
-                                  <option>Absa bank</option>
-                                  <option>Standard bank</option>
-                                  <option>Capitec bank</option>
+                                  <option *ngFor="let z of x" [value]="z.name"> {{ z.name }}</option>
                                 </select>
                             </div>
                          </div>

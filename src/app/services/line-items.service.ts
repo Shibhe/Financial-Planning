@@ -31,7 +31,14 @@ export class LineItemsService {
     this.myHeader.append("Origin", "http://localhost:4200");
 
     return this.Http.post(`${this.BASE_URL}`, item, {headers: this.myHeader})
-                    .map((respose) => respose);
+                    .map((respose: any) => {
+                      console.log(respose);
+                    if (respose.success == 0){
+                      alert(respose.message);
+                    } else if (respose.success == 1) {
+                      alert(respose.message);
+                    }
+                    });
   }
 
   removeItem(id, user_ID): Observable<any>{
@@ -61,7 +68,7 @@ export class LineItemsService {
     this.myHeader.append("Content-Type", "application/json");
     this.myHeader.append("Origin", "http://localhost:4200");
 
-    return this.Http.get<any>(`${this.BASE_URL}/addSpendType.php?spend_type_name=${spendType.spend_type_name_ID}&spend_type_desc=${spendType.spend_type_desc}&spend_type_Amt=${spendType.spend_type_Amt}&user_ID=${spendType.user_ID}`, {headers: this.myHeader})
+    return this.Http.get<any>(`${this.BASE_URL}/addSpendType.php?spend_type_name_ID=${spendType.spend_type_name_ID}&spend_type_desc=${spendType.spend_type_desc}&spend_type_Amt=${spendType.spend_type_Amt}&user_ID=${spendType.user_ID}`, {headers: this.myHeader})
                     .map((response) => {
                       if (response.success == 1){
                         alert(response.message);
@@ -86,5 +93,4 @@ export class LineItemsService {
     return this.Http.get<any>(`${this.BASE_URL}/getCategories.php`,  {headers: this.myHeader})
                     .map((respose) => respose);
   }
-
 }
