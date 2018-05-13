@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Bank_Statement } from '../../../model/import_statement.model';
+import { LineItemsService } from '../../../services/line-items.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { HttpErrorResponse } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -11,10 +14,33 @@ export class TransBankStatementComponent implements OnInit {
 
   lines: any[] = [];
   bank_Statement: Bank_Statement = new Bank_Statement();
-
-  constructor() { }
+  categories: any[] = [];
+  
+  constructor(private _LineItemsService: LineItemsService,
+    private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
+
+    this.spinnerService.show();
+    this._LineItemsService.getCategory()
+                          .subscribe((data) => {
+                            this.spinnerService.hide();
+                             this.categories.push(data);
+                             console.log(this.categories);
+                          },(err: HttpErrorResponse | Error) => {
+                            this.spinnerService.hide();
+                           if (err instanceof HttpErrorResponse) {
+                              if (err.status == 404){
+                               console.log(err.message);
+                              } else if (err.status == 401){
+                                console.log(err.message);
+                              } else if (err.status == 400){
+                                console.log(err.message);
+                              }
+                            } else {
+                              console.log(err.message);
+                            }
+                          });
   }
 
   handleFileSelect(evt) {
@@ -46,10 +72,18 @@ export class TransBankStatementComponent implements OnInit {
                 tarr.push(data[j]);
             }
           this.lines.push(tarr);
-          this.bank_Statement.downloaded.push(tarr["downloaded_statement"]);
-          this.bank_Statement.listOfBanks.push(tarr["bank_name"]);
+          // this.bank_Statement.downloaded.push(tarr["downloaded_statement"]);
+          // this.bank_Statement.listOfBanks.push(tarr["bank_name"]);
         }
     }
     console.log(this.lines); //The data in the form of 2 dimensional array.
+  }
+
+  print(){
+    window.print();
+  }
+
+  export(){
+    
   }
 }

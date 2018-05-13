@@ -39,9 +39,9 @@ export class AccountService {
     return this.Http.get(`${this.BASE_URL}/login.php?user_Email=${email}&user_Password=${password}`, { headers: this.myHeader})
                     .map((response: any) => {
                       console.log(response);
-                      if (response.success == 0){
+                      if (response.success == 0 || response == null){
                         this.isAuthenticated = false;
-                        alert(response.message);
+                        alert("Email or Password is incorrect");
                       } else {
                        // alert("Login Successful");
                         sessionStorage.setItem("currentUser", JSON.stringify(response));

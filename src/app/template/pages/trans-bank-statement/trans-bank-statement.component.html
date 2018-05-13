@@ -2,41 +2,31 @@
     <div class="row" style="margin-top: 30px">
       <div class="col-lg-4">
         <label>IMPORT A BANK STATEMENT</label>
-        <input type="file" id="import" class="form-control" accept=".csv,xlsx" (change)="handleFileSelect($event)" />  
+        <input type="file" id="import" class="btn btn-default" accept=".csv,xlsx" (change)="handleFileSelect($event)" />  
+      </div>
+      <div class="col-lg-8">
+         <div class="form-group" style="float:right">
+            <button type="button" class="btn btn-warning" (click)="export()"> Export</button>
+            <button type="button" class="btn btn-primary" (click)="print()"> Print</button>
+         </div>
       </div>
     </div>
     <div class="row" style="margin-top: 20px">
         <div class="col-lg-12">
           <div class="row">
             <div class="col-lg-6">
-                <label for="reportPeriod" class="col-lg-12">Report Period</label>
-                <select class="form-control">
-                  <option>Select Report Period</option>
-                  <option>30 Days</option>
-                  <option>60 Days</option>
-                  <option>120 Days</option>
-                </select>
+                <label for="gender">Report Period</label>
+                <input type="date" class="form-control" />  
             </div>
             <div class="col-lg-6">
-                <label for="reportPeriod" class="col-lg-12">Spend Type</label>
-                <select class="form-control"  name="gender">
+                <label for="gender">Spend Type</label>
+                <select class="form-control"  name="type">
                   <option value="" checked disabled>
                       Select Spend Type
                   </option>
-                 <option value="Income">
-                   Income
-                 </option>
-                 <option value="Investments">
-                   Investments
-                 </option>
-                 <option value="Running Cost">
-                    Running Cost
-                  </option>
-                  <option value="Other">
-                      Other Loan Products
-                    </option>
+                 <option *ngFor="let cat of categories['0']" [value]="cat.spend_type_cat_ID">{{cat.cat_name}}</option>
                 </select>
-              </div>
+           </div>
           </div>
           <div class="row">
             <div class="col-lg-12">
@@ -56,23 +46,13 @@
       </div>
       <div class="col-lg-6">
           <label for="reportPeriod" class="col-lg-12">Budget Line Item</label>
-          <select class="form-control"  name="gender">
-            <option value="" checked disabled>
-                Select Budget Item
-            </option>
-           <option value="Income">
-             Income
-           </option>
-           <option value="Investments">
-             Investments
-           </option>
-           <option value="Running Cost">
-              Running Cost
-            </option>
-            <option value="Other">
-                Other Loan Products
-              </option>
-          </select>
+              <select class="form-control"  name="type">
+                <option value="" checked disabled>
+                    Select Spend Type
+                </option>
+               <option *ngFor="let cat of categories['0']" [value]="cat.spend_type_cat_ID">{{cat.cat_name}}</option>
+              </select>
+         
           <div class="row" style="margin-left: 8px">
               <button type="button" class="btn btn-danger">Classify</button>
               <button type="button" class="btn btn-default">Cancel</button>
